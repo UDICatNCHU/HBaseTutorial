@@ -7,7 +7,7 @@ import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
 
-public class CreateHTable {
+public class HBaseCreateTableSample {
 
     public static void main(String[] args) {
         Configuration conf = HBaseConfiguration.create();
