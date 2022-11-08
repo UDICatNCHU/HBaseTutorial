@@ -18,8 +18,24 @@ export CLASSPATH=$CLASSPATH:/usr/local/hbase/conf:/usr/lib/jvm/java-8-openjdk-am
 
 
 
-### Some Basic Shell Script 
+### Some Basic Shell Scripts
 
+Start Script:
 ```
 hbase shell
+```
+
+Create Table
+```
+create 'employees', 'name', 'department
+```
+
+Insert Data
+```
+put 'employees', 'row1', 'name', 'Yao-Chung'
+```
+
+Get Data
+```
+scan 'employees'
 ```
