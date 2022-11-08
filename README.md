@@ -44,3 +44,9 @@ Batch Input with CSV file
 create 'employees', 'name', 'department'
 hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=',' -Dimporttsv.columns=HBASE_ROW_KEY,name,department employees employees.csv
 ```
+
+Alter Table Setting
+```
+describe "employees"
+alter "employees", "department", "VERSIONS"=>3
+```
