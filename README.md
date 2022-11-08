@@ -42,5 +42,5 @@ drop 'table1'
 Batch Input with CSV file
 ```
 create 'employees', 'name', 'department'
-**hbase** org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=',' -Dimporttsv.columns=HBASE_ROW_KEY,name,department employees employees.csv
+hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=',' -Dimporttsv.columns=HBASE_ROW_KEY,name,department employees employees.csv
 ```
