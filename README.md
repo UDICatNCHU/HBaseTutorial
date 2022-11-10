@@ -74,26 +74,43 @@ We can enable Restful API as follows.
 ```
 bin/hbase-daemon.sh start rest -p 33305
 ```
-Test and Query 
+Test 
 ```
 http://140.120.13.241:33305/version/cluster
+
+pip install requests
+import requests
+r = requests.get("http://140.120.13.241:33305/version/cluster")
+print(r.text)
 ```
 
 ```
 http://140.120.13.241:33305/employees/schema
+r = requests.get("http://140.120.13.241:33305/employees/schema", headers={"Accept" : "application/json"})
+print(r.text)
 ```
 
+
+
+Query: get a row.
 ```
 curl -vi -X GET -H "Accept: application/json"  "http://140.120.13.241:33305/employees/1"
 ```
 or
 ```
-pip install requests
-import requests
-r = requests.get("http://140.120.13.241:33305/version/cluster")
-print(r.text)
-r = requests.get("http://140.120.13.241:33305/employees/schema", headers={"Accept" : "application/json"})
-print(r.text)
 r = requests.get("http://140.120.13.241:33305/employees/1", headers={"Accept" : "application/json"})
 print(r.text)
 ```
+
+Scan:
+```
+curl -vi -X PUT   -H "Accept: text/xml"   -H "Content-Type: text/xml"   -d '<Scanner batch="2"/>'   "http://140.120.13.241:33305/employees/scanner/"
+```
+![Screenshot by Dropbox Capture](https://user-images.githubusercontent.com/23067569/201081327-4866826e-dba0-43c8-af74-22b49f802a79.png)
+
+scanner會回傳一個location, i.e., http://140.120.13.241:33305/employees/scanner/166808046151419036dac. 我們可以一直requests，直到HTTP/1.1 204 No Content
+
+```
+curl -vi -X GET "http://140.120.13.241:33305/employees/scanner/16680802163774805c3d6"
+```
+
