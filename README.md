@@ -48,5 +48,22 @@ hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=',' -Dim
 Alter Table Setting
 ```
 describe "employees"
-alter "employees", "department", "VERSIONS"=>3
+alter "employees", {NAME=>'department', VERSIONS=>3}
 ```
+Test Version Setting by Get and Scan
+```
+put "employees", "row4", "department", "cs1"
+put "employees", "row4", "department", "cs2"
+put "employees", "row4", "department", "cs3"
+get "employees", "row4", {COLUMN=>"department", VERSIONS=>3}
+scan "employees", {VERSION=>10}
+```
+
+RowPrefixFilter
+```
+put "employees", "4", "department", "cs4"
+put "employees", "44", "department", "cs4"
+put "employees", "443", "department", "cs444"
+scan "employees", {ROWPREFIXFILTER=>"4
+```
+
