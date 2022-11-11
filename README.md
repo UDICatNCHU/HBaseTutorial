@@ -108,9 +108,47 @@ curl -vi -X PUT   -H "Accept: text/xml"   -H "Content-Type: text/xml"   -d '<Sca
 ```
 ![Screenshot by Dropbox Capture](https://user-images.githubusercontent.com/23067569/201081327-4866826e-dba0-43c8-af74-22b49f802a79.png)
 
-scanner會回傳一個location, i.e., http://140.120.13.241:33305/employees/scanner/166808046151419036dac. 我們可以一直requests，直到HTTP/1.1 204 No Content
+scanner會回傳一個location, i.e., http://140.12x.xx.xx/employees/scanner/166808046151419036dac. 
+
+We can get the next batch from the scanner. Cell values are byte-encoded. If the scanner has been exhausted, HTTP status 204 is returned.
 
 ```
 curl -vi -X GET "http://140.120.13.241:33305/employees/scanner/16680802163774805c3d6"
+```
+
+Insert rows with Rest API
+
+首先，需留意Hbase Rest API互動中，column name 與 column value需編碼為Base64。
+可使用下列Method進行編碼：
+
+```
+def encode(s):
+    return base64.b64encode(s.encode("UTF-8")).decode("UTF-8")
+```
+
+For example, 
+<img width="282" alt="image" src="https://user-images.githubusercontent.com/23067569/201287488-98b71e6e-3022-4e0c-9f19-1c5862487113.png">
+
+如果我們要透過Rest API來insert資料至Hbase中。以Hbase shell command為例，
+```
+put "employees", "rowkey99", "departmet:Major", "Computer Science"
+```
+Rest API對應的步驟為：
+1. 將資料包裝成dictionary格式
+```
+cell= {"key":encode("rowkey99"), 
+       "Cell":[{"column":encode("department:Major"),"$":encode("Computer Science")}]}
+```
+```
+{'key': 'cm93a2V5OTk=',
+ 'Cell': [{'column': 'ZGVwYXJ0bWVudDpNYWpvcg==',
+   '$': 'Q29tcHV0ZXIgU2NpZW5jZQ=='}]}
+```
+2. 使用下列語法，post資料到hbase
+```
+rows = []
+rows.append(cell)
+jsonFormat = {"Row":rows}
+r = requests.post("http://140.120.13.241:33305/employees/fakerow", json.dumps(jsonFormat), headers={"Content-Type":"application/json", "Accept" : "application/json"})
 ```
 
