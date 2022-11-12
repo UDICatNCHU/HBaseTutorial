@@ -1,15 +1,11 @@
 # HBaseTutorial
 
 # Contents
- - [Specification](#specification) 
- - [Dependencies Title](#dependencies-title) 
-
-## Specification
-
-## Dependencies Title
+ -[How to use shell script to communicate with HBASE?](#basic-shell-scripts)
+ 
+ -[How to use REST api to communicate with HBASE?](https://github.com/UDICatNCHU/HBaseTutorial/edit/main/README.md#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8restful-api%E8%88%87hbase%E6%BA%9D%E9%80%9A)
 
 
-[如何使用Shell Scripit與Hbase溝通?] (#basic-shell-scripts)
 
 ### Basic Shell Scripts
 
@@ -17,6 +13,7 @@ Start Script:
 ```
 hbase shell
 ```
+
 
 All Data Store shall provide the following functions:
 - Create tables
@@ -78,32 +75,40 @@ put "employees", "443", "department", "cs444"
 scan "employees", {ROWPREFIXFILTER=>"4
 ```
 
+## 如何使用Restful API與HBase溝通?
+Assume that our Hbase server hosted on 140.120.13.241 with 33305 port
 
-# 啟用Restful Interface for HBase 
-假設我們的Hbase架設於140.120.13.241對外聆聽33305 port
-We can enable Restful API as follows.
+First, we can enable Restful API as follows.
 ```
 bin/hbase-daemon.sh start rest -p 33305
 ```
-Test 
+### Test if the Rest API is enabled.
+
+using a Browser
 ```
 http://140.120.13.241:33305/version/cluster
-
+```
+or with Python Request library
+```
 pip install requests
 import requests
 r = requests.get("http://140.120.13.241:33305/version/cluster")
 print(r.text)
 ```
 
+### Test to get a table's schema
 ```
 http://140.120.13.241:33305/employees/schema
+```
+
+```
 r = requests.get("http://140.120.13.241:33305/employees/schema", headers={"Accept" : "application/json"})
 print(r.text)
 ```
 
 
 
-Query: get a row.
+### Query: to get rows.
 ```
 curl -vi -X GET -H "Accept: application/json"  "http://140.120.13.241:33305/employees/1"
 ```
@@ -127,7 +132,7 @@ We can get the next batch from the scanner. Cell values are byte-encoded. If the
 curl -vi -X GET "http://140.120.13.241:33305/employees/scanner/16680802163774805c3d6"
 ```
 
-Insert rows with Rest API
+### To Insert rows with Rest API
 
 首先，需留意Hbase Rest API互動中，column name 與 column value需編碼為Base64。
 可使用下列Method進行編碼：
