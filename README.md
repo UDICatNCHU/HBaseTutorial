@@ -72,7 +72,7 @@ RowPrefixFilter
 put "employees", "4", "department", "cs4"
 put "employees", "44", "department", "cs4"
 put "employees", "443", "department", "cs444"
-scan "employees", {ROWPREFIXFILTER=>"4
+scan "employees", {ROWPREFIXFILTER=>"4}
 ```
 
 ## 如何使用Restful API與HBase溝通?
