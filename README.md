@@ -79,6 +79,8 @@ put "employees", "44", "department", "cs4"
 put "employees", "443", "department", "cs444"
 scan "employees", {ROWPREFIXFILTER=>"4}
 ```
+### Check Colab for shell scripting with Hbase
+https://colab.research.google.com/drive/1yzOCyHEAZM5wNUyHwjH-_MEwbYvwxeLq?usp=sharing
 
 ## 如何使用Thrift API與HBase溝通 (How to communicate with Thrif API)？
 
@@ -145,6 +147,9 @@ connection = happybase.Connection("127.0.0.1")
 table = connection.table('employees')
 table.delete("row1", columns=["department:second"])
 ```
+
+### Check the Colab for Happybase script
+https://colab.research.google.com/drive/1ghtH8h4cgNTvsecgEnRJTEbB0fDCFYbL?usp=sharing 
 
 <br><br>
 
@@ -242,6 +247,8 @@ jsonFormat = {"Row":rows}
 r = requests.post("http://140.120.13.241:33305/employees/fakerow", json.dumps(jsonFormat), headers={"Content-Type":"application/json", "Accept" : "application/json"})
 ```
 
+# Colab for using REST api for operating Hbase
+https://colab.research.google.com/drive/1VIDO0mHL8X4GIe5bjbKQMQz5B5onwxBP?usp=sharing
 
 
 [photo creadited](https://blog.cloudera.com/how-to-use-the-hbase-thrift-interface-part-1/)
