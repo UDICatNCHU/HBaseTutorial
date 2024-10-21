@@ -1,5 +1,13 @@
 # HBaseTutorial
 
+nano .bashrc
+```
+export HBASE_HOME=/usr/local/hbase
+export PATH=$PATH:$HBASE_HOME/bin
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+export PATH=$PATH:$JAVA_HOME/bin
+```
+
 # Contents
  -[How to use shell script to communicate with HBASE?](#basic-shell-scripts)
  
