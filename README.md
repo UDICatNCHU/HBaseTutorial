@@ -260,3 +260,33 @@ https://colab.research.google.com/drive/1VIDO0mHL8X4GIe5bjbKQMQz5B5onwxBP?usp=sh
 
 
 [photo creadited](https://blog.cloudera.com/how-to-use-the-hbase-thrift-interface-part-1/)
+
+
+# hbase install
+```
+wget https://archive.apache.org/dist/hbase/3.0.0-alpha-1/hbase-3.0.0-alpha-1-bin.tar.gz
+tar -xzf hbase-3.0.0-alpha-1-bin.tar.gz
+mv hbase-3.0.0-alpha-1 /usr/local/hbase
+sudo mv hbase-3.0.0-alpha-1 /usr/local/hbase
+```
+
+nano ~/.bashrc
+```
+export HBASE_HOME=/usr/local/hbase
+export PATH=$PATH:$HBASE_HOME/bin
+```
+source ~/.bashrc
+
+```
+cd $HBASE_HOME/conf
+readlink -f /usr/bin/java //get javapath
+
+source ~/.bashrc
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+nano hbase-env.sh
+echo $JAVA_HOME
+sudo chmod -R 755 /usr/local/hbase
+cd /usr/local/hbase/
+bin/start-hbase.sh
+```
