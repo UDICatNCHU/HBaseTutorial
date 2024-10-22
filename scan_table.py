@@ -16,5 +16,3 @@ for key, data in table.scan():
 # Close the connection when done
 connection.close()
 
-
-print("Table 'employeeTable' created successfully!")
