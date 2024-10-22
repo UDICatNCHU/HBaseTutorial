@@ -290,3 +290,9 @@ sudo chmod -R 755 /usr/local/hbase
 cd /usr/local/hbase/
 bin/start-hbase.sh
 ```
+
+Logging as hduser
+```
+hbase-daemon.sh start thrift
+start-hbase.sh
+```
