@@ -60,12 +60,6 @@ disable 'table1'
 drop 'table1'
 ```
 
-Batch Input with CSV file (using [this](https://www.dropbox.com/s/p0oylcw2kontdip/employees.csv?dl=0) as example)
-```
-create 'employees', 'name', 'department'
-hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=',' -Dimporttsv.columns=HBASE_ROW_KEY,name,department employees employees.csv
-```
-
 Alter Table Setting
 ```
 describe "employees"
@@ -101,6 +95,7 @@ Thrift is a lightweight, language-independent software stack for point-to-point 
 bin/hbase-daemon.sh start thrift
 !pip install happybase==1.1.0
 ```
+Batch Input with CSV file (using [this](https://www.dropbox.com/s/p0oylcw2kontdip/employees.csv?dl=0) as example)
 
 In addition, we also need HappyBase (for using python to connect Hbase through thrift)
 HappyBase is a developer-friendly Python library to interact with Apache HBase. HappyBase is designed for use in standard HBase setups, and offers application developers a Pythonic API to interact with HBase. Below the surface, HappyBase uses the Python Thrift library to connect to HBase using its Thrift gateway
