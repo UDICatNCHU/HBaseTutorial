@@ -13,8 +13,6 @@ export PATH=$PATH:$JAVA_HOME/bin
  
  -[How to use Thrift to communicate with HBASE?](https://github.com/UDICatNCHU/HBaseTutorial/edit/main/README.md#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8thrift-api%E8%88%87hbase%E6%BA%9D%E9%80%9A-how-to-communicate-with-thrif-api)
  
- -[How to use REST api to communicate with HBASE?](https://github.com/UDICatNCHU/HBaseTutorial/edit/main/README.md#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8restful-api%E8%88%87hbase%E6%BA%9D%E9%80%9A)
-
 
 ## We can use REST or Thrift API to communicate with HBASE
 <img width="338" alt="image" src="https://user-images.githubusercontent.com/23067569/202331952-8ff0f35d-5cef-4b12-a945-7bfd55263831.png">
