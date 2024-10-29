@@ -33,12 +33,15 @@ All Data Store shall provide the following functions:
 
 Create Table
 ```
-create 'employees', 'name', 'department'
+create 'employees', 'SalePersonInFo', 'Sales'
 ```
 
 Insert Data
 ```
-put 'employees', 'row1', 'name', 'Yao-Chung'
+put 'employees', 'row1', 'SalePersonInFo:name', 'Yao-Chung'
+put 'employees','001','SalePersonInfo:address','Taichung'
+put 'employees','001','Sales:Region','Taiwan'
+put 'employees','001','Sales:saleAmount','100'
 ```
 
 Retrieve Data
@@ -58,27 +61,8 @@ disable 'table1'
 drop 'table1'
 ```
 
-Alter Table Setting
-```
-describe "employees"
-alter "employees", {NAME=>'department', VERSIONS=>3}
-```
-Test Version Setting by Get and Scan
-```
-put "employees", "row4", "department", "cs1"
-put "employees", "row4", "department", "cs2"
-put "employees", "row4", "department", "cs3"
-get "employees", "row4", {COLUMN=>"department", VERSIONS=>3}
-scan "employees", {VERSION=>10}
-```
 
-RowPrefixFilter
-```
-put "employees", "4", "department", "cs4"
-put "employees", "44", "department", "cs4"
-put "employees", "443", "department", "cs444"
-scan "employees", {ROWPREFIXFILTER=>"4}
-```
+
 ### Check Colab for shell scripting with Hbase
 https://colab.research.google.com/drive/1yzOCyHEAZM5wNUyHwjH-_MEwbYvwxeLq?usp=sharing
 
