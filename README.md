@@ -39,7 +39,7 @@ create 'employees', 'SalePersonInFo', 'Sales'
 Insert Data
 ```
 put 'employees', 'row1', 'SalePersonInFo:name', 'Yao-Chung'
-put 'employees','row1','SalePersonInfo:address','Taichung'
+put 'employees','row1','SalePersonInFo:address','Taichung'
 put 'employees','row1','Sales:Region','Taiwan'
 put 'employees','row1','Sales:saleAmount','100'
 ```
