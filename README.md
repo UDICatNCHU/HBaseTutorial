@@ -61,7 +61,15 @@ disable 'table1'
 drop 'table1'
 ```
 
+Set VERSION control.
+```
+alter 'employees', NAME => 'SalePersonInfo', VERSIONS => 5
+```
 
+Get Previous Data
+```
+get 'employees', '1',  {COLUMNS=>'SalePersonInfo:Address', VERSIONS => 3}
+```
 
 ### Check Colab for shell scripting with Hbase
 https://colab.research.google.com/drive/1yzOCyHEAZM5wNUyHwjH-_MEwbYvwxeLq?usp=sharing
