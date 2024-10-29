@@ -4,7 +4,7 @@ nano .bashrc
 ```
 export HBASE_HOME=/usr/local/hbase
 export PATH=$PATH:$HBASE_HOME/bin
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 export PATH=$PATH:$JAVA_HOME/bin
 ```
 
